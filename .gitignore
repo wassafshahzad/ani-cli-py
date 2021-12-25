@@ -17,6 +17,7 @@ eggs/
 lib/
 lib64/
 parts/
+ani-ci-env/
 sdist/
 var/
 wheels/
@@ -127,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Vscode file
+.vscode/
