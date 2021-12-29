@@ -1,7 +1,7 @@
 import requests
-from AnimeClient import BaseClient
-from parser.BaseParser import BaseParser
-from Page import Page
+from .AnimeClient import BaseClient
+from .parser.BaseParser import BaseParser
+from .Page import Page
 
 class GogoAnimeClient(BaseClient):
     
@@ -26,11 +26,12 @@ class GogoAnimeClient(BaseClient):
 
     
     def get_search_page(self, link, items_selector, pagination_selector):
-        page = self.requester.get(link).text
+        value = 3
+        page = self.requester.get(link, timeout=(3.05,value)).text
         self.page_parser = BaseParser(items_selector, page, pagination_selector)
         links = self.page_parser.get_links()
         pagination = self.page_parser.get_tag_sibling()
-        return Page(*pagination, links)
+        return Page(**pagination, obj=links)
     
 
     def get_anime(self, name):

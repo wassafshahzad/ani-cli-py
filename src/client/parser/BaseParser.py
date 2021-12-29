@@ -19,10 +19,10 @@ class BaseParser:
         return self.soup.select(self.obj_selector)
 
     def get_tag_sibling(self):
-        tag = self.soup.select(self.pageination_selector)[-1] or None
+        tag = self.soup.select(self.pageination_selector) or None
         if tag:
-            tag = tag.parent if tag.name == "a" else tag #always check sibling of li tag
-            return [ 
-                tag.previous_sibling or None, 
-                tag.next_sibling or None ]
-        return []
+            tag = tag[-1].parent if tag[-1].name == "a" else tag[-1] #always check sibling of li tag
+            return {
+                "previous_page": tag.previous_sibling or None, 
+                "next_page": tag.next_sibling or None }
+        return {}
