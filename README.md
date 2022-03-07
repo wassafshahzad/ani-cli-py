@@ -1,2 +1,2 @@
 # ani-cli-py
-Watch anime on CLI
+A well written parser for some of your favourite anime sites
